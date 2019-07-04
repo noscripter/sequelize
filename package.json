@@ -47,7 +47,8 @@
     "toposort-class": "^1.0.1",
     "validator": "^4.6.1",
     "wellknown": "^0.4.1",
-    "wkx": "0.2.0"
+    "wkx": "0.2.0",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.1",
@@ -95,21 +96,21 @@
     "jshint": "./node_modules/.bin/jshint lib test",
     "teaser": "echo ''; node -pe \"Array(20 + process.env.DIALECT.length + 3).join('#')\"; echo '# Running tests for '$DIALECT' #'; node -pe \"Array(20 + process.env.DIALECT.length + 3).join('#')\";echo '';",
     "test-unit": "./node_modules/.bin/mocha --globals setImmediate,clearImmediate --ui tdd --check-leaks --colors -t 15000 --reporter spec 'test/unit/**/*.js'",
-    "test-unit-mysql":"DIALECT=mysql npm run test-unit",
-    "test-unit-postgres":"DIALECT=postgres npm run test-unit",
-    "test-unit-postgres-native":"DIALECT=postgres-native npm run test-unit",
-    "test-unit-mariadb":"DIALECT=mariadb npm run test-unit",
-    "test-unit-sqlite":"DIALECT=sqlite npm run test-unit",
-    "test-unit-mssql":"DIALECT=mssql npm run test-unit",
-    "test-unit-all":"npm run test-unit-mysql && npm run test-unit-postgres && npm run test-unit-postgres-native && npm run test-unit-mssql && npm run test-unit-sqlite && npm run test-unit-mariadb",
+    "test-unit-mysql": "DIALECT=mysql npm run test-unit",
+    "test-unit-postgres": "DIALECT=postgres npm run test-unit",
+    "test-unit-postgres-native": "DIALECT=postgres-native npm run test-unit",
+    "test-unit-mariadb": "DIALECT=mariadb npm run test-unit",
+    "test-unit-sqlite": "DIALECT=sqlite npm run test-unit",
+    "test-unit-mssql": "DIALECT=mssql npm run test-unit",
+    "test-unit-all": "npm run test-unit-mysql && npm run test-unit-postgres && npm run test-unit-postgres-native && npm run test-unit-mssql && npm run test-unit-sqlite && npm run test-unit-mariadb",
     "test-integration": "./node_modules/.bin/mocha --globals setImmediate,clearImmediate --ui tdd --check-leaks --colors -t 15000 --reporter spec --grep \"$GREP\" 'test/integration/**/*.test.js'",
-    "test-integration-mysql":"DIALECT=mysql npm run test-integration",
-    "test-integration-postgres":"DIALECT=postgres npm run test-integration",
-    "test-integration-postgres-native":"DIALECT=postgres-native npm run test-integration",
-    "test-integration-mariadb":"DIALECT=mariadb npm run test-integration",
-    "test-integration-sqlite":"DIALECT=sqlite npm run test-integration",
-    "test-integration-mssql":"DIALECT=mssql npm run test-integration",
-    "test-integration-all":"npm run test-integration-mysql && npm run test-integration-postgres && npm run test-integration-postgres-native && npm run test-integration-mssql && npm run test-integration-sqlite && npm run test-integration-mariadb",
+    "test-integration-mysql": "DIALECT=mysql npm run test-integration",
+    "test-integration-postgres": "DIALECT=postgres npm run test-integration",
+    "test-integration-postgres-native": "DIALECT=postgres-native npm run test-integration",
+    "test-integration-mariadb": "DIALECT=mariadb npm run test-integration",
+    "test-integration-sqlite": "DIALECT=sqlite npm run test-integration",
+    "test-integration-mssql": "DIALECT=mssql npm run test-integration",
+    "test-integration-all": "npm run test-integration-mysql && npm run test-integration-postgres && npm run test-integration-postgres-native && npm run test-integration-mssql && npm run test-integration-sqlite && npm run test-integration-mariadb",
     "test-mysql": "DIALECT=mysql npm test",
     "test-sqlite": "DIALECT=sqlite npm test",
     "test-postgres": "DIALECT=postgres npm test",
@@ -129,10 +130,13 @@
     "cover-all": "npm run cover-mysql && npm run cover-postgres && npm run cover-postgres-native && npm run cover-mssql && npm run cover-sqlite && npm run cover-mariadb && npm run merge-coverage",
     "merge-coverage": "rm -rf coverage && mkdir coverage && ./node_modules/.bin/lcov-result-merger 'coverage-*/lcov.info' 'coverage/lcov.info'",
     "codeclimate-send": "npm install -g codeclimate-test-reporter && CODECLIMATE_REPO_TOKEN=ce835a510bbf423a5ab5400a9bdcc2ec2d189d840b31657c6ee7cb9916b161d6 codeclimate-test-reporter < coverage/lcov.info",
-    "codeclimate": "npm run cover-all && npm run codeclimate-send"
+    "codeclimate": "npm run cover-all && npm run codeclimate-send",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "engines": {
     "node": ">=0.6.21"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
